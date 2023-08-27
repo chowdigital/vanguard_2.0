@@ -34,7 +34,7 @@
 					<a class="menu-toggle " aria-controls="primary-menu" aria-expanded="false" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav">
 					<div class="menu-icon shadow"></div></a>
 					<a class="navbar-brand shadow" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/logos/vanguard-logo-text.svg" alt="Vanguard Logo" style>
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/vanguard-logo-text.svg" alt="Vanguard Logo" style>
 					</a>
 					<div class="social-icons">
 						<a class="instagram-icon shadow" target="_blank" href=""></a>

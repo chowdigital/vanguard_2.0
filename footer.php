@@ -11,22 +11,67 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'cloudsdale-master' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'cloudsdale-master' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'cloudsdale-master' ), 'cloudsdale-master', '<a href="https://automattic.com/">Automattic</a>' );
-				?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+
+<div class="white-box">
+  <div class="container">
+    <div class="row">
+    <div class="col-12 col-sm-6 col-lg-3 text-center">
+        <a href="#"><button type="button" class="btn btn-primary">Info </button></a>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3 text-center">
+        <a href="#"><button type="button" class="btn btn-primary">Hire a space</button></a>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3 text-center">
+        <a href="#"><button type="button" class="btn btn-primary">Accessibility </button></a>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3 text-center">
+        <a href="#"><button type="button" class="btn btn-primary">Find us </button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-logo">
+<img src="<?php echo get_template_directory_uri(); ?>/assets/img/vanguard-logo.svg" alt="Black Book Logo" style>
+
+</div>
+<!-- Footer -->
+<footer class="container pt-5">
+<div class="row">
+  <div class="col-12 col-lg-6">
+  <ul>
+    <li>
+      <a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icons/mail.svg"></img>info@vanguardcamden.com</a>
+    </li>
+    <li>
+      <a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icons/phone.svg"></img>020 8092 9044</a>
+    </li>
+    <li>
+      <a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/img/icons/map.svg"></img>What Three Words: Cycle, Waters, Patch</a>
+    </li>
+
+</ul>
+</div>
+<div class="col-12 col-lg-6 col-xl-3 offset-xl-3">
+  <ul>
+    <li>
+      <a href="">Privacy Policy</a>
+    </li>
+    <li>
+    <a href="">Cookie Policy</a>
+
+    </li>
+    <li>
+    <a href="">Terms & Conditions</a>
+
+    </li>
+   
+</ul>
+</div>
+</div>
+</footer>
+
+
 
 <?php wp_footer(); ?>
 
