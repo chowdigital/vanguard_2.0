@@ -29,10 +29,12 @@
 
 	<header id="masthead" class="site-header">
 
-			<div class="cm-nav shadow">
+ <nav id="site-navigation" class="main-navigation">
+		<div class="cm-nav shadow">
 				<div class="container cm-nav-inner">
 					<a class="menu-toggle " aria-controls="primary-menu" aria-expanded="false" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav">
-					<div class="menu-icon shadow"></div></a>
+					<div class="menu-icon shadow"></div>
+				</a>
 					<a class="navbar-brand shadow" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/vanguard-logo-text.svg" alt="Vanguard Logo" style>
 					</a>
@@ -43,11 +45,7 @@
 					</div>
 				</div>
 			</div>
-
-
-		<nav id="site-navigation" class="main-navigation">
-
-			<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+			<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
 				<div class="offcanvas-header">
 					<h5 class="offcanvas-title" id="offcanvasNavLabel"><?php esc_html_e( 'Menu', 'cloudsdale-master' ); ?></h5>
 					<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -65,5 +63,5 @@
 					?>
 				</div>
 			</div>
-		</nav><!-- #site-navigation -->
+		</nav> 
 	</header><!-- #masthead -->

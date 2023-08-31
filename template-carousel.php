@@ -1,5 +1,6 @@
 <?php /* Template Name: Carosel */ get_header(); ?>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://localhost:8888/vanguard/wp-content/themes/vanguard_2.0/js/lightslider.js"></script> 
 <!-- Full Page Intro -->
 
 <div class="view full-page-intro z-depth-3">
@@ -11,14 +12,6 @@
 
 <div class="mask d-flex justify-content-center align-items-center">
 
-  <!-- Content -->
-  <div class="container">
-
-
-
-  </div>
-  <!-- Content -->
-
   
 
 </div>
@@ -28,74 +21,68 @@
 <!-- Full Page Intro --> 
 
 
+    <script>
+		
+    $(document).ready(function() {
+        $('#responsive').lightSlider({
+            item:3,
+            loop:true,
+            slideMove:1,
+            easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+            speed:600,
+            responsive : [
+                {
+                    breakpoint:992,
+                    settings: {
+                        item:2,
+                        slideMove:1,
+                        slideMargin:6,
+                      }
+                },
+                {
+                    breakpoint:768,
+                    settings: {
+                        item:1,
+                        slideMove:1
+                      }
+                }
+            ]
+        });  
+      });
+    </script>
 
 <section class="container">
-<div id="loopCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-
-    <?php
-    // Custom WordPress Loop to retrieve posts
-    $args = array(
-      'post_type' => 'post', // Change to your post type if necessary
-      'posts_per_page' => 6, // Number of posts to display in the carousel
-    );
-
-    $query = new WP_Query($args);
-    $item_count = 0;
-
-    while ($query->have_posts()) {
-      $query->the_post();
-      $item_count++;
-
-      // Output the carousel item markup
-      if ($item_count === 1) {
-        echo '<div class="carousel-item active">';
-      } else {
-        echo '<div class="carousel-item">';
-      }
-    ?>
-
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title"><?php the_title(); ?></h5>
-          <p class="card-text"><?php the_excerpt(); ?></p>
+    
+        <div class="item carosel-section">
+            <ul id="responsive" class="content-slider">
+            <?php $the_query = new WP_Query( 'cat=1&posts_per_page=6' );
+                      if ( $the_query->have_posts() ) {
+                      while ( $the_query->have_posts() ) { $the_query->the_post();  $category = get_the_category();  ?>		
+                   <li class="item-body">
+                   <div class="item-content">
+        <div class="square-box" style="background-image:  url(<?php the_post_thumbnail_url(); ?>); background-repeat: no-repeat; background-position: center; background-size: cover;">
+         
         </div>
-      </div>
 
-    </div><!-- end of carousel-item -->
+                  
+                    
+                        <h3 class="pt-4"> <?php the_title(); ?> </h3>
+                        <div class="" >  <?php the_excerpt(); ?>  
+                        </div>
+                        <div class="item-btn">
+                          <a href="<?php echo get_permalink() ?>">
+                        <button type="button" class="btn btn-white">Find out more</button>
+                        </a>
+                      </div>  
+                      </div>
+                      </li>
+          <?php $counter++; } /* end while*/ } /* end if */ wp_reset_postdata(); ?>
 
-    <?php
-    }
+            </ul>
+        </div>
 
-    wp_reset_postdata();
-    ?>
-
-  </div><!-- end of carousel-inner -->
-<!-- Carousel navigation indicators -->
-<ol class="carousel-indicators">
-    <?php
-    // Reset the counter to generate indicators
-    $item_count = 0;
-    while ($query->have_posts()) {
-      $query->the_post();
-      $item_count++;
-    ?>
-      <li data-bs-target="#loopCarousel" data-bs-slide-to="<?php echo $item_count - 1; ?>" <?php echo $item_count === 1 ? 'class="active"' : ''; ?>></li>
-    <?php
-    }
-    ?>
-  </ol>
-
-  <button class="carousel-control-prev" type="button" data-bs-target="#loopCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#loopCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div><!-- end of myCarousel -->
 </section>
 
 
 <?php get_footer(); ?>
+
