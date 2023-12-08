@@ -141,7 +141,7 @@ function cloudsdale_master_scripts() {
 	wp_enqueue_style( 'Bootstrap','https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css', array() );
 	wp_enqueue_style( 'Typekit', 'https://use.typekit.net/liw0drb.css' );
 	wp_enqueue_style( 'lightslider', get_template_directory_uri() . '/lightslider.css', array(), $ver = 1.0 );
-	wp_enqueue_style( 'cloudsdale-master-style', get_stylesheet_uri(), array(), $ver = 1.0 );
+	wp_enqueue_style( 'cloudsdale-master-style', get_stylesheet_uri(), array(), $ver = 1.4 );
 	wp_style_add_data( 'cloudsdale-master-style', 'rtl', 'replace' );
     wp_enqueue_script( 'Bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js', array(), '1.0.0', true );
 
@@ -188,3 +188,12 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+/**
+ * Excerpt length
+ */
+
+function custom_excerpt_length( $length ) {
+	return 35;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 100 );

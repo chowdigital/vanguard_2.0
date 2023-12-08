@@ -12,7 +12,7 @@ Author URI: https://cloudsdale.co.uk/
 @import "components/components";
 @import "utilities/accessibility";
 @import "utilities/alignments";
-@import "lightslider";
+//@import "lightslider";
 
 // ===========================================================================
 // My Custom Styles
@@ -28,10 +28,13 @@ Author URI: https://cloudsdale.co.uk/
 //  6. Buttons
 //  7. Video
 //  8. Carousel
+//  9. Single Blog Post
+//  10. Default Page
 
 $primary: #051c2b;
 $highlight: #da6519;
 $white: #efeeeb;
+$black: #000;
 
 $xs: 575px;
 $sm: 576px;
@@ -51,12 +54,24 @@ html {
   height: 100%;
 }
 // Settings for navbar in edit mode
-
+.coming-soon {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+}
 body.logged-in {
   nav,
   .cm-nav,
   #offcanvasNav {
     margin-top: 32px;
+  }
+  .coming-soon {
+    display: none;
+    position: fixed;
+    width: 0;
+    height: 0;
+    z-index: 0;
   }
 }
 body {
@@ -75,6 +90,7 @@ body {
 .flex-end {
   align-self: flex-end;
 }
+
 // ===========================================================================
 //  2. Typography
 // ===========================================================================
@@ -94,6 +110,7 @@ p {
   font-family: "neue-haas-grotesk-display", sans-serif;
   font-weight: 500;
   font-style: normal;
+  color: $white;
 }
 .menu-item a,
 .btn,
@@ -104,7 +121,9 @@ button {
   text-transform: lowercase;
   letter-spacing: 1px;
 }
-
+a:visited {
+  color: #000;
+}
 // ===========================================================================
 //  3. Navigation
 // ===========================================================================
@@ -131,7 +150,14 @@ button {
   top: 0;
   width: 100%;
   background-color: $primary;
-  height: 72px;
+  height: 45px;
+  z-index: 999;
+  transition: height 0.5s ease-in-out;
+}
+@media (min-width: $xs) {
+  .cm-nav {
+    height: 72px;
+  }
 }
 .cm-nav-inner {
   position: relative;
@@ -139,53 +165,82 @@ button {
 
 .navbar-brand {
   background-color: $white;
-  width: 200px;
+  width: 130px;
   position: absolute;
-  height: 80px;
+  height: 50px;
   top: 0;
-  left: calc(50% - 100px);
+  left: calc(50% - 65px);
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
   transition: height 0.5s ease-in-out;
 
   img {
-    left: calc(50% - 75px);
+    left: calc(50% - 50px);
     position: relative;
-    height: 60px;
+    height: 30px;
     top: 10px;
     transition: 0.5s ease-in-out;
   }
 }
-
 .navbar-brand img {
-  width: 150px;
+  width: 100px;
   max-height: auto;
+}
+@media (min-width: $xs) {
+  .navbar-brand img {
+    width: 150px;
+  }
+  .navbar-brand {
+    width: 200px;
+    height: 80px;
+    left: calc(50% - 100px);
+    transition: height 0.5s ease-in-out;
+    img {
+      left: calc(50% - 75px);
+      height: 60px;
+    }
+  }
 }
 .menu-toggle {
   position: absolute;
-  top: 15px;
-  left: 0px;
+  top: 5px;
+  left: 5px;
+  transition: 0.5s ease-in-out;
+
   .menu-icon {
     background-image: url(assets/img/icons/menu.svg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     display: inline-block;
   }
 }
+@media (min-width: $xs) {
+  .menu-toggle {
+    top: 15px;
+    left: 0px;
+    .menu-icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
 .social-icons {
   position: absolute;
-  top: 20px;
-  right: 0px;
+  top: 10px;
+  right: 5px;
   padding: none;
+  transition: 0.5s ease-in-out;
+
   a {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     display: inline-block;
   }
   .instagram-icon {
@@ -198,7 +253,70 @@ button {
     background-image: url(assets/img/icons/twitter.svg);
   }
 }
+@media (min-width: $xs) {
+  .social-icons {
+    top: 20px;
+    right: 0px;
+    a {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+.navbar-nav ul {
+  flex-direction: column;
+}
+.navbar-nav ul li {
+  padding: 10px;
+  text-transform: capitalize;
+  font-size: 16px;
+  color: $primary;
+  font-weight: 600;
+  a,
+  a:visited,
+  a:focus,
+  a:active {
+    color: $primary;
+  }
+  a:hover {
+    color: $highlight;
+  }
+}
 
+.offcanvas-footer {
+  background-color: $primary;
+  a img {
+    width: 2em;
+    height: 2em;
+    margin-right: 5px;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
+.offcanvas-footer ul,
+.offcanvas-footer li {
+  list-style-type: none;
+  color: $white;
+}
+.offcanvas-footer a,
+.offcanvas-footer a:visited {
+  color: $white;
+  width: 100%;
+  font-weight: 400;
+  font-size: 0.9em;
+  text-decoration: none;
+  img {
+    width: 2em;
+    height: 2em;
+    margin-right: 5px;
+  }
+}
+footer a:hover {
+  color: $highlight;
+}
 // ===========================================================================
 //  4. Footer
 // ===========================================================================
@@ -207,10 +325,6 @@ button {
 .page {
   margin: 0;
   padding-top: 0px;
-}
-
-footer {
-  height: 200px;
 }
 
 .footer-logo {
@@ -282,6 +396,31 @@ footer a:hover {
   display: block;
   padding-top: 100%;
 }
+
+.center-home {
+  display: flex;
+  height: 100vh;
+  justify-content: space-around;
+  flex-direction: column;
+  h1 {
+    color: $white;
+  }
+  .btn {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.homepage-box {
+  background-color: rgba(5, 28, 43, 1);
+  border-radius: 7px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  h1 {
+    font-weight: 500;
+  }
+}
 // ===========================================================================
 //  6. Buttons
 // ===========================================================================
@@ -316,6 +455,37 @@ footer a:hover {
   color: $primary;
 }
 
+// WP Buttons
+.wp-block-button__link,
+.wp-block-button__link:visited {
+  font-family: "neue-haas-grotesk-display", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+  border: 0;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out,
+    -webkit-box-shadow 0.15s ease-in-out;
+  padding: 0.84rem 2.14rem;
+  font-size: 0.81rem;
+  margin: 5px 0px;
+  border-radius: 2px;
+  background-color: $primary;
+  color: $white !important;
+}
+.wp-block-button__link:hover {
+  color: $white;
+  -webkit-box-shadow:
+    0 5px 11px 0 rgba(0, 0, 0, 0.18),
+    0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 5px 11px 0 rgba(0, 0, 0, 0.18),
+    0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
 // ===========================================================================
 //  8. Carousel
 // ===========================================================================
@@ -323,16 +493,23 @@ footer a:hover {
   background-image: url(assets/img/icons/controls.png);
   top: calc(100% - 32px);
 }
+.lSSlideOuter .lSPager.lSpg > li:hover a,
+.lSSlideOuter .lSPager.lSpg > li.active a {
+  background-color: $highlight;
+}
 .item-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   height: 100%;
   padding: 0 30px 0 30px;
   background-color: $primary;
 }
 .item-content {
   color: $white;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   h5 {
     margin-top: 1em;
   }
@@ -342,4 +519,97 @@ footer a:hover {
 }
 .carosel-section {
   margin: 100px 0px;
+}
+.excerpt-height {
+  height: 250px;
+  overflow: hidden;
+}
+// ===========================================================================
+//  9. Single Blog Post
+// ===========================================================================
+#blog-main {
+  padding-top: 400px;
+  padding-bottom: 200px;
+}
+.blog-container {
+  position: relative;
+  padding: 0px 10px;
+  background-color: $white;
+  color: $black;
+}
+.blog-content {
+  top: -100px;
+  position: relative;
+}
+.post-thumb {
+  height: 400px;
+  width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  z-index: 3;
+  top: -200px;
+}
+@media (min-width: $md) {
+  .blog-container {
+    padding: 0px 20px;
+  }
+}
+@media (min-width: $lg) {
+  .blog-container {
+    padding: 0px 50px;
+  }
+}
+@media (min-width: $xl) {
+  .post-thumb {
+    margin-right: 0px;
+  }
+  .blog-container {
+    padding: 0px 100px;
+  }
+}
+@media (min-width: $xxl) {
+  .blog-container {
+    padding: 0px 200px;
+  }
+}
+
+// ===========================================================================
+//  10. Default Page
+// ===========================================================================
+
+#page-main {
+  padding-top: 200px;
+  padding-bottom: 200px;
+}
+
+.page-container {
+  position: relative;
+  padding: 10px 10px;
+  background-color: $white;
+  color: $black;
+  border-radius: 7px;
+}
+.page-content {
+  position: relative;
+}
+@media (min-width: $md) {
+  .page-container {
+    padding: 20px 20px;
+  }
+}
+@media (min-width: $lg) {
+  .page-container {
+    padding: 50px 50px;
+  }
+}
+@media (min-width: $xl) {
+  .page-container {
+    padding: 100px 100px;
+  }
+}
+@media (min-width: $xxl) {
+  .page-container {
+    padding: 200px 200px;
+  }
 }

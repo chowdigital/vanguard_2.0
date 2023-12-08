@@ -71,29 +71,25 @@ $(document).ready(function() {
 <section class="container">
 
     <div class="item carosel-section">
-        <div class="text-center pb-5 text-white">
-            <h2>Our Partners</h2>
-        </div>
         <ul id="responsive" class="content-slider">
-            <?php $the_query = new WP_Query( 'cat=1&posts_per_page=6' );
+            <?php $the_query = new WP_Query( 'cat=1&posts_per_page=3' );
                       if ( $the_query->have_posts() ) {
                       while ( $the_query->have_posts() ) { $the_query->the_post();  $category = get_the_category();  ?>
             <li class="item-body">
                 <div class="item-content">
-
-                    <a href="<?php echo get_permalink() ?>">
-                        <div class="square-box"
-                            style="background-image:  url(<?php the_post_thumbnail_url(); ?>); background-repeat: no-repeat; background-position: center; background-size: cover;">
-                        </div>
-                    </a>
-                    <div class="pt-4 excerpt-height">
-                        <h3 class="pt-4 pb-3"> <?php the_title(); ?>
+                    <div class="div">
+                        <a href="<?php echo get_permalink() ?>">
+                            <div class="square-box"
+                                style="background-image:  url(<?php the_post_thumbnail_url(); ?>); background-repeat: no-repeat; background-position: center; background-size: cover;">
+                            </div>
+                        </a>
+                        <h3 class="pt-4"> <?php the_title(); ?>
                         </h3>
-                        <?php the_excerpt(); ?>
+                        <div class="pt-4"> <?php the_excerpt(); ?>
+                        </div>
                     </div>
 
-
-                    <div class="item-btn mt-5">
+                    <div class="item-btn">
                         <a href="<?php echo get_permalink() ?>">
                             <button type="button" class="btn btn-white">Find out more</button>
                         </a>
